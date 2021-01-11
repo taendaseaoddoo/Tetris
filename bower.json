@@ -1,0 +1,33 @@
+{
+  "name": "tetris",
+  "version": "1.0.0",
+  "description": "a Russian tile-matching puzzle video game",
+  "main": "dist/js/tetris.js",
+  "authors": [
+    "dewlyer dewlyer@gmial.com"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "javascript",
+    "game",
+    "tetris"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "copyright",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dewlyer/tetris.git"
+  },
+  "dependencies": {
+    "jquery": "^2.2.0"
+  },
+  "homepage": "https://github.com/dewlyer/tetris"
+}
