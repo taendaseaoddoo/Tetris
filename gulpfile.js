@@ -11,40 +11,40 @@
         header = require('gulp-header'),
         rename = require('gulp-rename');
 
-    var debug = false;
-    var paths = {
-        html: {
-            src: 'src/html/*.jade',
-            dest: 'dist/html'
+    var debug = false,
+        paths = {
+            html: {
+                src: 'src/html/*.jade',
+                dest: 'dist/html'
+            },
+            css: {
+                src: 'src/css/**/*.scss',
+                dest: 'dist/css'
+            },
+            js: {
+                src: 'src/js/**/*.js',
+                dest: 'dist/js'
+            }
         },
-        css: {
-            src: 'src/css/**/*.scss',
-            dest: 'dist/css'
-        },
-        js: {
-            src: 'src/js/**/*.js',
-            dest: 'dist/js'
-        }
-    };
-    var copyright = fs.readFileSync('copyright');
-    var packages = {
-        name: pkg.name,
-        version: pkg.version,
-        description: pkg.description,
-        author: pkg.author,
-        repository: pkg.repository.url,
-        license: pkg.license
-    };
+        copyright = fs.readFileSync('copyright'),
+        packages = {
+            name: pkg.name,
+            version: pkg.version,
+            description: pkg.description,
+            author: pkg.author,
+            repository: pkg.repository.url,
+            license: pkg.license
+        };
 
     gulp.task('clean:html', function(){
         return gulp.src(paths.html.dest+'/**/*', {read: false})
             .pipe(clean());
     });
-    gulp.task('clean:css', function(cb){
+    gulp.task('clean:css', function(){
         return gulp.src(paths.css.dest+'/**/*', {read: false})
             .pipe(clean());
     });
-    gulp.task('clean:js', function(cb){
+    gulp.task('clean:js', function(){
         return gulp.src(paths.js.dest+'/**/*', {read: false})
             .pipe(clean());
     });
