@@ -10,9 +10,9 @@
   "main": "dist/js/tetris.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dewlyer/tetris.git"
+    "url": "https://git.oschina.net/dewlyer/Tetris.git"
   },
-  "author": "dewlyer dewlyer@gmial.com",
+  "author": "dewlyer liluak@yeah.net",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",

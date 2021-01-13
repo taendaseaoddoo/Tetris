@@ -1,7 +1,7 @@
 {
   "name": "tetris",
   "version": "1.0.0",
-  "description": "a Russian tile-matching puzzle video game",
+  "description": "A Russian tile-matching puzzle video game",
   "main": "dist/js/tetris.js",
   "authors": [
     "dewlyer dewlyer@gmial.com"
@@ -13,7 +13,7 @@
     "tetris"
   ],
   "moduleType": [],
-  "homepage": "",
+  "homepage": "https://git.oschina.net/dewlyer/Tetris",
   "ignore": [
     "**/.*",
     "copyright",
@@ -24,10 +24,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dewlyer/tetris.git"
+    "url": "https://git.oschina.net/dewlyer/Tetris.git"
   },
   "dependencies": {
     "jquery": "^2.2.0"
-  },
-  "homepage": "https://github.com/dewlyer/tetris"
+  }
 }
