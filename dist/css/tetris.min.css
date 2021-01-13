@@ -7,4 +7,4 @@
  *
  * Released under the MIT license
  */
- html,body{height:100%}.tetris-game-holder{display:block;width:100%;height:100%}.tetris-canvas{display:block;width:100%;height:100%}
+ html,body{height:100%}.tetris-game-holder{display:block;width:100%;height:100%}.tetris-canvas{display:block;width:100%;height:100%;background:#000}
