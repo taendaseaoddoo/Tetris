@@ -1,4 +1,3 @@
-
 (function($, window, document){
     'use strict';
 
@@ -12,7 +11,6 @@
         // Canvas
         _canvas: null,
         _ctx: null,
-
         // UI Elements
         _$game: null,
         _$canvas: null,
