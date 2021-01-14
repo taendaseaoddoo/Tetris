@@ -55,6 +55,7 @@
                 data: {
                     debug: false,
                     name: pkg.name,
+                    author: pkg.author,
                     keywords: pkg.keywords,
                     description: pkg.description
                 }
