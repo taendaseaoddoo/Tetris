@@ -1,13 +1,55 @@
+@charset "UTF-8";
 html, body {
   height: 100%; }
 
-.tetris-game-holder {
+.tetris.game-holder {
+  position: relative;
   display: block;
   width: 100%;
   height: 100%; }
+  .tetris.game-holder:after {
+    display: table;
+    content: '';
+    clear: both; }
+  .tetris.game-holder:hover {
+    outline: none; }
+  body.hide .tetris.game-holder {
+    display: none; }
 
-.tetris-canvas {
+.tetris .canvas {
   display: block;
   width: 100%;
   height: 100%;
   background: white; }
+
+.tetris .score-holder,
+.tetris .start-holder {
+  position: absolute;
+  font: 14px/1.5;
+    font-family: Arial;
+    font-size: 24px;
+    font-weight: bold; }
+
+/*-
+   多行注释
+-*/
+/*! When the first letter of a comment is !, the comment will be interpolated and always rendered into css output even in compressed output modes. */
+#main {
+  width: 5em; }
+
+/*
+ SassScript 支持六种主要的数据类型：
+ 数字（例如 1.2、13、10px）
+ 文本字符串，无论是否有引号（例如 "foo"、'bar'、baz）
+ 颜色（例如 blue、#04a3f9、rgba(255, 0, 0, 0.5)）
+ 布尔值（例如 true、false）
+ 空值（例如 null）
+ 值列表，用空格或逗号分隔（例如 1.5em 1em 0 2em、Helvetica, Arial, sans-serif）
+ */
+/* If the file’s extension is .css.
+   If the filename begins with http://.
+   If the filename is a url().
+   If the @import has any media queries. */
+/* #main {
+   @import "example";
+} */

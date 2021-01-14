@@ -1,10 +1,10 @@
 /*!
  * tetris 1.0.0
- * a Russian tile-matching puzzle video game
+ * A Russian tile-matching puzzle video game
  * https://git.oschina.net/dewlyer/Tetris.git
  *
- * Copyright (c) 2016 dewlyer liluak@yeah.net
+ * Copyright (c) 2017 dewlyer liluak@yeah.net
  *
  * Released under the MIT license
  */
- html,body{height:100%}.tetris-game-holder{display:block;width:100%;height:100%}.tetris-canvas{display:block;width:100%;height:100%;background:white}
+ html,body{height:100%}.tetris.game-holder{position:relative;display:block;width:100%;height:100%}.tetris.game-holder:after{display:table;content:'';clear:both}.tetris.game-holder:hover{outline:none}body.hide .tetris.game-holder{display:none}.tetris .canvas{display:block;width:100%;height:100%;background:white}.tetris .score-holder,.tetris .start-holder{position:absolute;font:14px/1.5;font-family:Arial;font-size:24px;font-weight:bold}/*! When the first letter of a comment is !, the comment will be interpolated and always rendered into css output even in compressed output modes. */#main{width:5em}

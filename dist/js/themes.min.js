@@ -1,9 +1,9 @@
 /*!
  * tetris 1.0.0
- * a Russian tile-matching puzzle video game
+ * A Russian tile-matching puzzle video game
  * https://git.oschina.net/dewlyer/Tetris.git
  *
- * Copyright (c) 2016 dewlyer liluak@yeah.net
+ * Copyright (c) 2017 dewlyer liluak@yeah.net
  *
  * Released under the MIT license
  */

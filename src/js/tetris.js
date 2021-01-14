@@ -31,21 +31,21 @@
         },
         _createHolder: function() {
             var game = this;
-            this._$gameholder = $('<div class="tetris-game-holder"></div>');
+            this._$gameholder = $('<div class="tetris game-holder"></div>');
             this._$gameholder.css({
                 position:   'relative',
                 width:      '100%',
                 height:     '100%'
             });
             $(document.body).prepend(this._$gameholder);
-            game._$score = $('<div class="tetris-score-holder"></div>');
+            game._$score = $('<div class="score-holder"></div>');
             game._$gameholder.append(game._$score);
-            game._$start = $('<div class="tetris-start-holder"></div>');
+            game._$start = $('<div class="start-holder"></div>');
             game._$gameholder.append(game._$start);
         },
         _createUI: function() {
             var game = this;
-            game._$canvas = $('<canvas class="tetris-canvas"></canvas>');
+            game._$canvas = $('<canvas class="canvas"></canvas>');
             game._$canvas.attr({
                 width: $(window).width(),
                 height: $(window).height()
