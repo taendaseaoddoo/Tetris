@@ -1,5 +1,4 @@
 (function(){
-
     'use strict';
     var pkg =  require('./package.json'),
         fs = require('fs'),

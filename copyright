@@ -3,7 +3,7 @@
  * <%= description %>
  * <%= repository %>
  *
- * Copyright (c) 2016 <%= author %>
+ * Copyright (c) 2017 <%= author %>
  *
  * Released under the <%= license %> license
  */
