@@ -1,19 +1,19 @@
 {
   "name": "tetris",
   "version": "1.0.0",
-  "description": "a Russian tile-matching puzzle video game",
+  "description": "A Russian tile-matching puzzle video game",
+  "main": "src/js/tetris.js",
+  "author": "dewlyer liluak@yeah.net",
   "keywords": [
     "javascript",
     "games",
     "tetris"
   ],
-  "main": "dist/js/tetris.js",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://git.oschina.net/dewlyer/Tetris.git"
   },
-  "author": "dewlyer liluak@yeah.net",
-  "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
