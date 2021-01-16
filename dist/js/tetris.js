@@ -1466,11 +1466,11 @@
             asdwKeys: true, // Enable ASDW keys
 
             // Copy
-            playText: 'Let\'s play some Tetris',
-            playButtonText: 'Play',
-            gameOverText: 'Game Over',
-            restartButtonText: 'Play Again',
-            scoreText: 'Score',
+            playText: '开始玩俄罗斯方块！',
+            playButtonText: '开始',
+            gameOverText: '游戏结束',
+            restartButtonText: '再玩一次',
+            scoreText: '得分',
 
             // Basic Callbacks
             onStart: function(){},
@@ -1493,7 +1493,10 @@
 
     $(function(){
         $('#tetris-demo').tetris({
-            theme: 'custom'
+            theme: 'dewlyer'
+        }).css({
+            'width': $(window).width(),
+            'height': $(window).height()
         });
     });
 
