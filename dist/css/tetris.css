@@ -82,34 +82,34 @@ html, body {
     user-select: none;
     line-height: 50px;
     text-align: center; }
-  .tetris .touch:active {
-    background: rgba(255, 255, 255, 0.3); }
+    .tetris .touch:active {
+      background: rgba(255, 255, 255, 0.3); }
   .tetris .touch-left {
     left: -60px;
     bottom: 10px; }
-  .tetris .touch-left::after {
-    content: "<"; }
+    .tetris .touch-left::after {
+      content: "<"; }
   .tetris .touch-right {
     right: -60px;
     bottom: 10px; }
-  .tetris .touch-right::after {
-    content: ">"; }
+    .tetris .touch-right:after {
+      content: ">"; }
   .tetris .touch-rotate-left {
     left: -60px;
     bottom: 80px; }
-  .tetris .touch-rotate-left::after {
-    content: "<o"; }
+    .tetris .touch-rotate-left::after {
+      content: "<o"; }
   .tetris .touch-rotate-right {
     right: -60px;
     bottom: 80px; }
-  .tetris .touch-rotate-right::after {
-    content: "o>"; }
+    .tetris .touch-rotate-right::after {
+      content: "o>"; }
   .tetris .touch-drop {
     left: 50%;
     margin-left: -25px;
     bottom: -60px; }
-  .tetris .touch-drop::after {
-    content: "."; }
+    .tetris .touch-drop::after {
+      content: "."; }
   .tetris .btn {
     position: relative;
     display: inline-block;
@@ -121,36 +121,36 @@ html, body {
     font-size: 18px;
     text-align: center;
     cursor: default; }
-  .tetris .btn::before {
-    position: absolute;
-    content: "";
-    top: 100%;
-    left: 0px;
-    bottom: 0px;
-    right: 0px;
-    border: 2px solid #ffffff;
-    border-top: none;
-    border-right: none;
-    transition: all 0.2s ease; }
-  .tetris .btn::after {
-    position: absolute;
-    content: "";
-    top: 0px;
-    left: 100%;
-    bottom: 0px;
-    right: 0px;
-    border: 2px solid #ffffff;
-    border-left: none;
-    border-bottom: none;
-    transition: all 0.2s ease; }
-  .tetris .btn:hover::before {
-    left: 5px;
-    bottom: -8px;
-    right: -8px; }
-  .tetris .btn:hover::after {
-    top: 5px;
-    bottom: -8px;
-    right: -8px; }
+    .tetris .btn::before {
+      position: absolute;
+      content: "";
+      top: 100%;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+      border: 2px solid #ffffff;
+      border-top: none;
+      border-right: none;
+      transition: all 0.2s ease; }
+    .tetris .btn::after {
+      position: absolute;
+      content: "";
+      top: 0px;
+      left: 100%;
+      bottom: 0px;
+      right: 0px;
+      border: 2px solid #ffffff;
+      border-left: none;
+      border-bottom: none;
+      transition: all 0.2s ease; }
+    .tetris .btn:hover::before {
+      left: 5px;
+      bottom: -8px;
+      right: -8px; }
+    .tetris .btn:hover::after {
+      top: 5px;
+      bottom: -8px;
+      right: -8px; }
   .tetris .score-holder {
     position: absolute;
     top: 20px;
@@ -163,7 +163,8 @@ html, body {
   .tetris .score-num {
     font-size: 20px;
     font-weight: bold; }
-  .tetris .start-holder, .tetris .game-over-holder {
+  .tetris .start-holder,
+  .tetris .game-over-holder {
     position: absolute;
     top: 0;
     left: 0;
@@ -171,11 +172,13 @@ html, body {
     bottom: 0;
     background: rgba(0, 0, 0, 0.8);
     text-align: center; }
-  .tetris .start, .tetris .game-over {
+  .tetris .start,
+  .tetris .game-over {
     position: absolute;
     top: 50%;
     width: 100%;
     transform: translateY(-50%); }
-  .tetris .start-msg, .tetris .game-over-msg {
+  .tetris .start-msg,
+  .tetris .game-over-msg {
     font-size: 18px;
     margin-bottom: 30px; }

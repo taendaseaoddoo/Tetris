@@ -134,45 +134,45 @@ $width: 5em;
     user-select: none;
     line-height: 50px;
     text-align: center;
-  }
-  .touch:active {
-    background: rgba(255,255,255,0.3);
+    &:active {
+      background: rgba(255,255,255,0.3);
+    }
   }
   .touch-left {
     left: -60px;
     bottom: 10px;
-  }
-  .touch-left::after {
-    content: "<";
+    &::after {
+      content: "<";
+    }
   }
   .touch-right {
     right: -60px;
     bottom: 10px;
-  }
-  .touch-right::after {
-    content: ">";
+    &:after {
+      content: ">";
+    }
   }
   .touch-rotate-left {
     left: -60px;
     bottom: 80px;
-  }
-  .touch-rotate-left::after {
-    content: "<o";
+    &::after {
+      content: "<o";
+    }
   }
   .touch-rotate-right {
     right: -60px;
     bottom: 80px;
-  }
-  .touch-rotate-right::after {
-    content: "o>";
+    &::after {
+      content: "o>";
+    }
   }
   .touch-drop {
     left: 50%;
     margin-left: -25px;
     bottom: -60px;
-  }
-  .touch-drop::after {
-    content: ".";
+    &::after {
+      content: ".";
+    }
   }
   /* Buttons */
   .btn {
@@ -186,41 +186,42 @@ $width: 5em;
     font-size: 18px;
     text-align: center;
     cursor: default;
+    &::before {
+      position: absolute;
+      content: "";
+      top: 100%;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+      border: 2px solid #ffffff;
+      border-top: none;
+      border-right: none;
+      transition: all 0.2s ease;
+    }
+    &::after {
+      position: absolute;
+      content: "";
+      top: 0px;
+      left: 100%;
+      bottom: 0px;
+      right: 0px;
+      border: 2px solid #ffffff;
+      border-left: none;
+      border-bottom: none;
+      transition: all 0.2s ease;
+    }
+    &:hover::before {
+      left: 5px;
+      bottom: -8px;
+      right: -8px;
+    }
+    &:hover::after {
+      top: 5px;
+      bottom: -8px;
+      right: -8px;
+    }
   }
-  .btn::before {
-    position: absolute;
-    content: "";
-    top: 100%;
-    left: 0px;
-    bottom: 0px;
-    right: 0px;
-    border: 2px solid #ffffff;
-    border-top: none;
-    border-right: none;
-    transition: all 0.2s ease;
-  }
-  .btn::after {
-    position: absolute;
-    content: "";
-    top: 0px;
-    left: 100%;
-    bottom: 0px;
-    right: 0px;
-    border: 2px solid #ffffff;
-    border-left: none;
-    border-bottom: none;
-    transition: all 0.2s ease;
-  }
-  .btn:hover::before {
-    left: 5px;
-    bottom: -8px;
-    right: -8px;
-  }
-  .btn:hover::after {
-    top: 5px;
-    bottom: -8px;
-    right: -8px;
-  }
+
   /* Score */
   .score-holder {
     position: absolute;
@@ -238,7 +239,8 @@ $width: 5em;
     font-weight: bold;
   }
   /* Menu */
-  .start-holder, .game-over-holder {
+  .start-holder,
+  .game-over-holder {
     position: absolute;
     top: 0;
     left: 0;
@@ -247,13 +249,15 @@ $width: 5em;
     background: rgba(0,0,0,0.8);
     text-align: center;
   }
-  .start, .game-over {
+  .start,
+  .game-over {
     position: absolute;
     top: 50%;
     width: 100%;
     transform: translateY(-50%);
   }
-  .start-msg, .game-over-msg {
+  .start-msg,
+  .game-over-msg {
     font-size: 18px;
     margin-bottom: 30px;
   }
