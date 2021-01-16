@@ -99,5 +99,5 @@ window.TetrisThemes = {
         stroke: '#000000',
         strokeWidth: 3,
         innerStroke: null
-    },
+    }
 };
