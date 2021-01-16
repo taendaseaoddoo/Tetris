@@ -1399,7 +1399,7 @@
             });
             game._$gameholder.append(game._$gameover);
 
-            this._createControls();
+            game._createControls();
         },
         _createControls: function() {
             var game = this;
@@ -1412,16 +1412,16 @@
 
         _create: function() {
             var game = this;
-            game.theme(game.options.theme);
             game._createHolder();
             game._createUI();
         },
 
         _setup: function () {
-            this._SetupShapeFactory();
-            this._SetupFilled();
-            this._SetupInfo();
-            this._SetupBoard();
+            var game = this;
+            game._SetupShapeFactory();
+            game._SetupFilled();
+            game._SetupInfo();
+            game._SetupBoard();
         },
 
         // Initialization
@@ -1450,7 +1450,6 @@
                 game._setupTouchControls(false);
             }
         }
-
     };
 
     $.fn.tetris = function (options) {
@@ -1493,7 +1492,9 @@
     };
 
     $(function(){
-        $('#tetris-demo').tetris();
+        $('#tetris-demo').tetris({
+            theme: 'custom'
+        });
     });
 
 }(jQuery, window, document));
