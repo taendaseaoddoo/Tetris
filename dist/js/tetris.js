@@ -1107,6 +1107,7 @@
 
             game._niceShapes = game._getNiceShapes();
         },
+
         // Controls
         _setupControls: function(enable) {
 
@@ -1298,36 +1299,13 @@
 
         },
 
-        theme: function (newTheme) {
-            if( typeof newTheme === 'undefined' ) {
-                return this.options.theme || this._theme;
-            }
-            // Setup the theme properly
-            if( typeof newTheme === 'string' ) {
-                this.options.theme = newTheme;
-                this._theme = $.extend(true, {}, TetrisThemes[newTheme]);
-            }
-            else {
-                this.options.theme = null;
-                this._theme = newTheme;
-            }
-
-            if( typeof this._theme === 'undefined' || this._theme === null ) {
-                this._theme = $.extend(true, {}, TetrisThemes['retro']);
-                this.options.theme = 'retro';
-            }
-
-            if( isNaN(parseInt(this._theme.strokeWidth)) || typeof parseInt(this._theme.strokeWidth) !== 'number' ) {
-                this._theme.strokeWidth = 2;
-            }
+        theme: function () {
+            this._theme = this.options.theme;
 
             // Load the image assets
             this._preloadThemeAssets();
 
             if( this._board !== null ) {
-                if( typeof this._theme.background === 'string' ) {
-                    this._$canvas.css('background-color', this._theme.background);
-                }
                 this._board.render();
             }
         },
@@ -1427,7 +1405,7 @@
         // Initialization
         init: function() {
             var game = this;
-            game.theme(game.options.theme);
+            game.theme();
             game._create();
             game._refreshBlockSizes();
             game.updateSizes();
@@ -1457,7 +1435,13 @@
             autoplay: false, // Let a bot play the game
             autoplayRestart: true, // Restart the game automatically once a bot loses
             showFieldOnStart: true, // Show a bunch of random blocks on the start screen (it looks nice)
-            theme: null, // The theme name or a theme object
+            theme: {
+                background: '#000000',
+                primary: '#eee',
+                secondary: '#eee',
+                stroke: '#eee',
+                strokeWidth: 2
+            }, // The theme name or a theme object
             blockWidth: 10, // How many blocks wide the field is (The standard is 10 blocks)
             autoBlockWidth: false, // The blockWidth is dinamically calculated based on the autoBlockSize. Disabled blockWidth. Useful for responsive backgrounds
             autoBlockSize: 24, // The max size of a block for autowidth mode
@@ -1493,7 +1477,9 @@
 
     $(function(){
         $('#tetris-demo').tetris({
-            theme: 'dewlyer'
+            speed: 400,
+            autoplay: true,
+            autoplayRestart: false
         }).css({
             'width': $(window).width(),
             'height': $(window).height()
