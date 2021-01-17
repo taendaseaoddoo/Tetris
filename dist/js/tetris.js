@@ -1324,12 +1324,9 @@
             // Create the game canvas and context
             game._$canvas = $('<canvas class="canvas"></canvas>');
             game._$canvas.attr({
-                width: $(window).width(),
-                height: $(window).height()
+                width: '100%',
+                height: '100%'
             });
-            if( typeof game._theme.background === 'string' ) {
-                game._$canvas.css('background-color', game._theme.background);
-            }
             game._$gameholder.prepend(game._$canvas);
 
             game._canvas = game._$canvas.get(0);
