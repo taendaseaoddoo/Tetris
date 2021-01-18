@@ -59,17 +59,22 @@ $width: 5em;
 #main {
   width: $width;
 }
+// 变量作用域
 
 // 数据类型
 /*
- SassScript 支持六种主要的数据类型：
+ SassScript 支持7种主要的数据类型：
  数字（例如 1.2、13、10px）
  文本字符串，无论是否有引号（例如 "foo"、'bar'、baz）
  颜色（例如 blue、#04a3f9、rgba(255, 0, 0, 0.5)）
  布尔值（例如 true、false）
  空值（例如 null）
  值列表，用空格或逗号分隔（例如 1.5em 1em 0 2em、Helvetica, Arial, sans-serif）
+ maps from one value to another (e.g. (key1: value1, key2: value2))
  */
+//多值变量分为list类型和map类型，简单来说list类型有点像js中的数组，而map类型有点像js中的对象。
+// $px: 5px 10px 20px 30px;
+// $heading: (h1: 2em, h2: 1.5em, h3: 1.2em);
 
 // 等式运算 (== and !=)
 // 关系运算（<、>、<=、>=）
