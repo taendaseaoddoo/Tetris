@@ -1312,22 +1312,23 @@
 
         _createHolder: function() {
             var game = this;
-            // Create the main holder (it holds all the ui elements, the original element is just the wrapper)
-            game._$gameholder = $('<div class="tetris game-holder"></div>');
-            game._$gameholder.css({
-                position:   'relative',
-                width:      '100%',
-                height:     '100%'
-            });
-            game.element.empty().append(game._$gameholder);
 
             // Create the game canvas and context
-            game._$canvas = $('<canvas class="canvas"></canvas>');
-            game._$canvas.attr({
+            game._$canvas = $('<canvas>');
+            game._$canvas.addClass('canvas').attr({
                 width: '100%',
                 height: '100%'
             });
-            game._$gameholder.prepend(game._$canvas);
+
+            // Create the main holder (it holds all the ui elements, the original element is just the wrapper)
+            game._$gameholder = $('<div>');
+            game._$gameholder.addClass('tetris game-holder').css({
+                position:   'relative',
+                width:      '100%',
+                height:     '100%'
+            }).prepend(game._$canvas);
+
+            game.element.empty().append(game._$gameholder);
 
             game._canvas = game._$canvas.get(0);
             game._ctx = game._canvas.getContext('2d');
@@ -1337,10 +1338,10 @@
             // Score
             game._$score = $(
                 '<div class="score-holder">'+
-                '<div class="score">'+
-                '<div class="score-msg">'+ this.options.scoreText +'</div>'+
-                '<div class="score-num">0</div>'+
-                '</div>'+
+                    '<div class="score">'+
+                        '<div class="score-msg">'+ this.options.scoreText +'</div>'+
+                        '<div class="score-num">0</div>'+
+                    '</div>'+
                 '</div>').hide();
             game._$scoreText = game._$score.find('.score-num');
             game._$gameholder.append(game._$score);
@@ -1348,10 +1349,10 @@
             // Create the start menu
             game._$start = $(
                 '<div class="start-holder">'+
-                '<div class="start">'+
-                '<div class="start-msg">'+ this.options.playText +'</div>'+
-                '<a class="btn start-btn">'+ this.options.playButtonText +'</a>'+
-                '</div>'+
+                    '<div class="start">'+
+                        '<div class="start-msg">'+ this.options.playText +'</div>'+
+                        '<a class="btn start-btn">'+ this.options.playButtonText +'</a>'+
+                    '</div>'+
                 '</div>').hide();
             game._$gameholder.append(game._$start);
 
@@ -1363,18 +1364,16 @@
             // Create the game over menu
             game._$gameover = $(
                 '<div class="game-over-holder">'+
-                '<div class="game-over">'+
-                '<div class="game-over-msg">'+ this.options.gameOverText +'</div>'+
-                '<a class="btn game-over-btn">'+ this.options.restartButtonText +'</a>'+
-                '</div>'+
+                    '<div class="game-over">'+
+                        '<div class="game-over-msg">'+ this.options.gameOverText +'</div>'+
+                        '<a class="btn game-over-btn">'+ this.options.restartButtonText +'</a>'+
+                    '</div>'+
                 '</div>').hide();
             game._$gameover.find('.game-over-btn').click(function(event){
                 event.preventDefault();
                 game.restart();
             });
             game._$gameholder.append(game._$gameover);
-
-            game._createControls();
         },
         _createControls: function() {
             var game = this;
@@ -1384,11 +1383,11 @@
             game._$touchRotateLeft = $('<a class="touch touch-rotate-left" />').appendTo(game._$gameholder);
             game._$touchDrop = $('<a class="touch touch-drop" />').appendTo(game._$gameholder);
         },
-
         _create: function() {
             var game = this;
             game._createHolder();
             game._createUI();
+            game._createControls();
         },
 
         _setup: function () {
