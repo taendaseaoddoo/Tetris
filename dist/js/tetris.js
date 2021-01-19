@@ -317,22 +317,24 @@
 
         // Update the sizes of the renderer (this makes the game responsive)
         updateSizes: function() {
+            var game = this;
+            game._PIXEL_WIDTH = game.element.innerWidth();
+            game._PIXEL_HEIGHT = game.element.innerHeight();
 
-            this._PIXEL_WIDTH = this.element.innerWidth();
-            this._PIXEL_HEIGHT = this.element.innerHeight();
+            game._BLOCK_WIDTH = game.options.blockWidth;
+            game._BLOCK_HEIGHT = Math.floor(game.element.innerHeight() / game.element.innerWidth() * game._BLOCK_WIDTH);
 
-            this._BLOCK_WIDTH = this.options.blockWidth;
-            this._BLOCK_HEIGHT = Math.floor(this.element.innerHeight() / this.element.innerWidth() * this._BLOCK_WIDTH);
-
-            this._block_size = Math.floor(this._PIXEL_WIDTH / this._BLOCK_WIDTH);
-            this._border_width = 2;
+            game._block_size = Math.floor(game._PIXEL_WIDTH / game._BLOCK_WIDTH);
+            game._border_width = 2;
 
             // Recalculate the pixel width and height so the canvas always has the best possible size
-            this._PIXEL_WIDTH = this._block_size * this._BLOCK_WIDTH;
-            this._PIXEL_HEIGHT = this._block_size * this._BLOCK_HEIGHT;
+            game._PIXEL_WIDTH = game._block_size * game._BLOCK_WIDTH;
+            game._PIXEL_HEIGHT = game._block_size * game._BLOCK_HEIGHT;
 
-            this._$canvas .attr('width', this._PIXEL_WIDTH)
-                .attr('height', this._PIXEL_HEIGHT);
+            game._$canvas.attr({
+                'width':    game._PIXEL_WIDTH,
+                'height':   game._PIXEL_HEIGHT
+            });
         },
 
         _getNiceShapes: function () {
@@ -1473,7 +1475,7 @@
 
     $(function(){
         $('#tetris-demo').tetris({
-            speed: 400,
+            speed: 20,
             autoplay: true,
             autoplayRestart: false
         }).css({

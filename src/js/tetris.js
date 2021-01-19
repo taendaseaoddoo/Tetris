@@ -1475,7 +1475,7 @@
 
     $(function(){
         $('#tetris-demo').tetris({
-            speed: 400,
+            speed: 20,
             autoplay: true,
             autoplayRestart: false
         }).css({
