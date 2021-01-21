@@ -548,6 +548,105 @@
             }
 
         },
+
+        theme: function () {
+            this._theme = this.options.theme;
+
+            // Load the image assets
+            this._preloadThemeAssets();
+
+            if( this._board !== null ) {
+                this._board.render();
+            }
+        },
+
+        _createHolder: function() {
+            var game = this;
+
+            // Create the main holder (it holds all the ui elements, the original element is just the wrapper)
+            game._$gameholder = $('<div>');
+            game._$gameholder.addClass('tetris game-holder').css({
+                position:   'relative',
+                width:      '100%',
+                height:     '100%'
+            });
+
+            // Create the game canvas and context
+            game._$canvas = $('<canvas>');
+            game._$canvas.addClass('canvas').attr({
+                width: '100%',
+                height: '100%'
+            }).prependTo(game._$gameholder);
+
+            game.element.empty().append(game._$gameholder);
+
+            game._canvas = game._$canvas.get(0);
+            game._ctx = game._canvas.getContext('2d');
+        },
+        _createUI: function() {
+            var game = this;
+            // Score
+            game._$score = $(
+                '<div class="score-holder">'+
+                    '<div class="score">'+
+                        '<div class="score-msg">'+ this.options.scoreText +'</div>'+
+                        '<div class="score-num">0</div>'+
+                    '</div>'+
+                '</div>').hide();
+            game._$scoreText = game._$score.find('.score-num');
+            game._$gameholder.append(game._$score);
+
+            // Create the start menu
+            game._$start = $(
+                '<div class="start-holder">'+
+                    '<div class="start">'+
+                        '<div class="start-msg">'+ this.options.playText +'</div>'+
+                        '<a class="btn start-btn">'+ this.options.playButtonText +'</a>'+
+                    '</div>'+
+                '</div>').hide();
+            game._$gameholder.append(game._$start);
+
+            game._$start.find('.start-btn').click(function(event){
+                event.preventDefault();
+                game.start();
+            });
+
+            // Create the game over menu
+            game._$gameover = $(
+                '<div class="game-over-holder">'+
+                    '<div class="game-over">'+
+                        '<div class="game-over-msg">'+ this.options.gameOverText +'</div>'+
+                        '<a class="btn game-over-btn">'+ this.options.restartButtonText +'</a>'+
+                    '</div>'+
+                '</div>').hide();
+            game._$gameover.find('.game-over-btn').click(function(event){
+                event.preventDefault();
+                game.restart();
+            });
+            game._$gameholder.append(game._$gameover);
+        },
+        _createControls: function() {
+            var game = this;
+            game._$touchLeft = $('<a class="touch touch-left" />').appendTo(game._$gameholder);
+            game._$touchRight = $('<a class="touch touch-right" />').appendTo(game._$gameholder);
+            game._$touchRotateRight = $('<a class="touch touch-rotate-right" />').appendTo(game._$gameholder);
+            game._$touchRotateLeft = $('<a class="touch touch-rotate-left" />').appendTo(game._$gameholder);
+            game._$touchDrop = $('<a class="touch touch-drop" />').appendTo(game._$gameholder);
+        },
+        _create: function() {
+            var game = this;
+            game._createHolder();
+            game._createUI();
+            game._createControls();
+        },
+
+        _setup: function () {
+            var game = this;
+            game._SetupShapeFactory();
+            game._SetupFilled();
+            game._SetupInfo();
+            game._SetupBoard();
+        },
         _SetupShapeFactory: function(){
             var game = this;
             if(game._shapeFactory !== null){ return; }
@@ -576,7 +675,6 @@
             };
         },
         _SetupFilled: function () {
-
             var game = this;
             if( this._filled !== null ){ return; }
 
@@ -1109,7 +1207,6 @@
 
             game._niceShapes = game._getNiceShapes();
         },
-
         // Controls
         _setupControls: function(enable) {
 
@@ -1299,105 +1396,6 @@
                 game._$touchDrop.hide();
             }
 
-        },
-
-        theme: function () {
-            this._theme = this.options.theme;
-
-            // Load the image assets
-            this._preloadThemeAssets();
-
-            if( this._board !== null ) {
-                this._board.render();
-            }
-        },
-
-        _createHolder: function() {
-            var game = this;
-
-            // Create the main holder (it holds all the ui elements, the original element is just the wrapper)
-            game._$gameholder = $('<div>');
-            game._$gameholder.addClass('tetris game-holder').css({
-                position:   'relative',
-                width:      '100%',
-                height:     '100%'
-            });
-
-            // Create the game canvas and context
-            game._$canvas = $('<canvas>');
-            game._$canvas.addClass('canvas').attr({
-                width: '100%',
-                height: '100%'
-            }).prependTo(game._$gameholder);
-
-            game.element.empty().append(game._$gameholder);
-
-            game._canvas = game._$canvas.get(0);
-            game._ctx = game._canvas.getContext('2d');
-        },
-        _createUI: function() {
-            var game = this;
-            // Score
-            game._$score = $(
-                '<div class="score-holder">'+
-                    '<div class="score">'+
-                        '<div class="score-msg">'+ this.options.scoreText +'</div>'+
-                        '<div class="score-num">0</div>'+
-                    '</div>'+
-                '</div>').hide();
-            game._$scoreText = game._$score.find('.score-num');
-            game._$gameholder.append(game._$score);
-
-            // Create the start menu
-            game._$start = $(
-                '<div class="start-holder">'+
-                    '<div class="start">'+
-                        '<div class="start-msg">'+ this.options.playText +'</div>'+
-                        '<a class="btn start-btn">'+ this.options.playButtonText +'</a>'+
-                    '</div>'+
-                '</div>').hide();
-            game._$gameholder.append(game._$start);
-
-            game._$start.find('.start-btn').click(function(event){
-                event.preventDefault();
-                game.start();
-            });
-
-            // Create the game over menu
-            game._$gameover = $(
-                '<div class="game-over-holder">'+
-                    '<div class="game-over">'+
-                        '<div class="game-over-msg">'+ this.options.gameOverText +'</div>'+
-                        '<a class="btn game-over-btn">'+ this.options.restartButtonText +'</a>'+
-                    '</div>'+
-                '</div>').hide();
-            game._$gameover.find('.game-over-btn').click(function(event){
-                event.preventDefault();
-                game.restart();
-            });
-            game._$gameholder.append(game._$gameover);
-        },
-        _createControls: function() {
-            var game = this;
-            game._$touchLeft = $('<a class="touch touch-left" />').appendTo(game._$gameholder);
-            game._$touchRight = $('<a class="touch touch-right" />').appendTo(game._$gameholder);
-            game._$touchRotateRight = $('<a class="touch touch-rotate-right" />').appendTo(game._$gameholder);
-            game._$touchRotateLeft = $('<a class="touch touch-rotate-left" />').appendTo(game._$gameholder);
-            game._$touchDrop = $('<a class="touch touch-drop" />').appendTo(game._$gameholder);
-        },
-        _create: function() {
-            var game = this;
-            game._createHolder();
-            game._createUI();
-            game._createControls();
-        },
-
-        _setup: function () {
-            var game = this;
-            game._SetupShapeFactory();
-            game._SetupFilled();
-            game._SetupInfo();
-            game._SetupBoard();
         },
 
         // Initialization
