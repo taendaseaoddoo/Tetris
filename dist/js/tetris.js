@@ -1315,20 +1315,20 @@
         _createHolder: function() {
             var game = this;
 
-            // Create the game canvas and context
-            game._$canvas = $('<canvas>');
-            game._$canvas.addClass('canvas').attr({
-                width: '100%',
-                height: '100%'
-            });
-
             // Create the main holder (it holds all the ui elements, the original element is just the wrapper)
             game._$gameholder = $('<div>');
             game._$gameholder.addClass('tetris game-holder').css({
                 position:   'relative',
                 width:      '100%',
                 height:     '100%'
-            }).prepend(game._$canvas);
+            });
+
+            // Create the game canvas and context
+            game._$canvas = $('<canvas>');
+            game._$canvas.addClass('canvas').attr({
+                width: '100%',
+                height: '100%'
+            }).prependTo(game._$gameholder);
 
             game.element.empty().append(game._$gameholder);
 
@@ -1474,13 +1474,13 @@
     };
 
     $(function(){
-        $('#tetris-demo').tetris({
+        $('#tetris-demo').css({
+            'width': $(window).width(),
+            'height': $(window).height()
+        }).tetris({
             speed: 20,
             autoplay: true,
             autoplayRestart: false
-        }).css({
-            'width': $(window).width(),
-            'height': $(window).height()
         });
     });
 
