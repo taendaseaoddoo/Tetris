@@ -1457,18 +1457,15 @@
         };
         var settings = $.extend({}, defaults, options);
 
-        return this.each(function () {
-            var element = $(this);
-            var tetris = new Tetris(settings, element);
-            tetris.init();
+        return this.each(function (index, element) {
+            (new Tetris(settings, $(element))).init();
         });
     };
 
     $(function(){
-        $('#tetris-demo').css({
-            'width': $(window).width(),
-            'height': $(window).height()
-        }).tetris({
+        $('#tetris-demo')
+        .css({'width': $(window).width(),'height': $(window).height()})
+        .tetris({
             speed: 20,
             autoplay: true,
             autoplayRestart: false
