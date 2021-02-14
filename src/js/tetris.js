@@ -2,6 +2,38 @@
 
     'use strict';
 
+    var Music = {
+        audioEl: null,
+        audioObj: null,
+        currentId: 1,
+        playList: [],
+        init: function () {
+            this.initUrl();
+            this.initAudio();
+            this.play();
+        },
+        initAudio: function () {
+            this.audioEl = $('<audio>');
+            this.audioEl.attr('id', 'gameBgm').addClass('bgm-holder');
+            this.audioObj = this.audioEl[0];
+        },
+        initUrl: function () {
+            var url = '../mp3/m';
+            var ext = '.mp3';
+            for(var i=1; i<=3; i++) {
+                this.playList.push(url+i+ext);
+            }
+        },
+        play: function () {
+            this.stop();
+            this.audioObj.src = this.playList[0];
+            this.audioObj.play();
+        },
+        stop: function () {
+            this.audioObj.pause();
+        }
+    };
+
     function Shape(game, orientations, symmetrical, blockType) {
         this.x = 0;
         this.y = 0;
@@ -1463,13 +1495,14 @@
     };
 
     $(function(){
-        $('#tetris-demo')
-        .css({'width': $(window).width(),'height': $(window).height()})
-        .tetris({
-            speed: 20,
-            autoplay: true,
-            autoplayRestart: false
-        });
+        // $('#tetris-demo')
+        // .css({'width': $(window).width(),'height': $(window).height()})
+        // .tetris({
+        //     speed: 20,
+        //     autoplay: true,
+        //     autoplayRestart: false
+        // });
+        Music.init();
     });
 
 }(jQuery, window, document));
