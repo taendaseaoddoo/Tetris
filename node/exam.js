@@ -9,14 +9,25 @@
 // }
 //
 
-var fs = require('fs');
+// var fs = require('fs');
+//
+// function copyfile(src, dist) {
+//     fs.writeFileSync(dist, fs.readFileSync(src));
+// }
+//
+// function main(argv) {
+//     copyfile(argv[0], argv[1]);
+// }
+//
+// main(process.argv.slice(2));
 
-function copyfile(src, dist) {
-    fs.writeFileSync(dist, fs.readFileSync(src));
-}
+var http = require('http');
+http.createServer(function (request, response) {
 
-function main(argv) {
-    copyfile(argv[0], argv[1]);
-}
+    response.writeHead(200, {
+        'Contetnt-Type': 'text/plain'
+    });
+    response.end('Hello World\n');
+}).listen(8888);
 
-main(process.argv.slice(2));
+console.log('Serve running ati http://127.0.0.1:8888');
