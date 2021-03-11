@@ -5,7 +5,7 @@
     var Music = {
         audioEl: null,
         audioObj: null,
-        currentId: 1,
+        currentId: 0,
         playList: [],
         init: function () {
             this.initUrl();
@@ -26,13 +26,26 @@
         },
         play: function () {
             this.stop();
-            this.audioObj.src = this.playList[0];
+            this.audioObj.src = this.playList[this.currentId];
             this.audioObj.play();
         },
         stop: function () {
             this.audioObj.pause();
+        },
+        playNext: function() {
+            this.stop();
+            this.currentId ++;
+            this.play();
         }
     };
+    $(function () {
+        Music.init();
+        $.musicPlayNext = function () {
+            //this.apply();
+            Music.playNext()
+        };
+        //$.musicPlayNext();
+    });
 
     function Shape(game, orientations, symmetrical, blockType) {
         this.x = 0;
@@ -1502,7 +1515,6 @@
         //     autoplay: true,
         //     autoplayRestart: false
         // });
-        Music.init();
     });
 
 }(jQuery, window, document));
