@@ -5,47 +5,71 @@
     var Music = {
         audioEl: null,
         audioObj: null,
-        currentId: 0,
-        playList: [],
-        init: function () {
-            this.initUrl();
+        currentId: -1,
+        holder: 'body',
+        paths: '',
+        playList: null,
+        isRandom: false,
+        init: function (config) {
+            this.holder = config.holder || this.holder;
+            this.isRandom = config.random || this.isRandom;
+            this.paths = config.paths || this.paths;
+            this.initPlayList(config.playlist);
             this.initAudio();
-            this.play();
+        },
+        initPlayList: function (playlist) {
+            var playlistType = typeof playlist;
+            if (playlistType === 'undefined') {
+                console.error('music list error!');
+            }
+            else {
+                this.playList = [];
+                this.currentId = 0;
+                playlistType === 'string' ? this.playList.push(playlist) : this.playList = playlist;
+            }
         },
         initAudio: function () {
             this.audioEl = $('<audio>');
             this.audioEl.attr('id', 'gameBgm').addClass('bgm-holder');
             this.audioObj = this.audioEl[0];
+            this.audioEl.appendTo(this.holder).hide();
+            this.bindEvent();
         },
-        initUrl: function () {
-            var url = '../mp3/m';
-            var ext = '.mp3';
-            for(var i=1; i<=3; i++) {
-                this.playList.push(url+i+ext);
+        bindEvent: function () {
+            var thisMusic = this;
+            thisMusic.audioEl.on('ended', function () {
+                thisMusic.playNext();
+            });
+        },
+        randomId: function () {
+            var listNumb = this.playList.length;
+            this.currentId = Math.floor(Math.random() * listNumb);
+            // console.clear();
+            // console.log('playlist length: %d', this.playList.length);
+            // console.log('current music ID: %d', this.currentId);
+        },
+        stop: function () {
+            if(!this.audioObj.paused) {
+                this.audioObj.pause();
             }
         },
         play: function () {
+            if(this.isRandom) this.randomId();
             this.stop();
-            this.audioObj.src = this.playList[this.currentId];
+            this.audioObj.src = this.paths + this.playList[this.currentId];
             this.audioObj.play();
         },
-        stop: function () {
-            this.audioObj.pause();
-        },
         playNext: function() {
-            this.stop();
-            this.currentId ++;
+            if (this.isRandom) {
+                this.randomId();
+            }
+            else {
+                var listMaxNumb = this.playList.length - 1;
+                this.currentId = (this.currentId >= listMaxNumb) ? 0 : this.currentId + 1;
+            }
             this.play();
         }
     };
-    $(function () {
-        Music.init();
-        $.musicPlayNext = function () {
-            //this.apply();
-            Music.playNext()
-        };
-        //$.musicPlayNext();
-    });
 
     function Shape(game, orientations, symmetrical, blockType) {
         this.x = 0;
@@ -1508,13 +1532,24 @@
     };
 
     $(function(){
-        // $('#tetris-demo')
-        // .css({'width': $(window).width(),'height': $(window).height()})
-        // .tetris({
-        //     speed: 20,
-        //     autoplay: true,
-        //     autoplayRestart: false
-        // });
+        $('#tetris-demo')
+        .css({'width': $(window).width(),'height': $(window).height()})
+        .tetris({
+            speed: 20,
+            autoplay: true,
+            autoplayRestart: false
+        });
+        Music.init({
+            holder: '#tetris-demo',
+            random: true,
+            paths: '../mp3/',
+            playlist: [
+                'm1.mp3',
+                'm2.mp3',
+                'm3.mp3'
+            ]
+        });
+        Music.play();
     });
 
 }(jQuery, window, document));

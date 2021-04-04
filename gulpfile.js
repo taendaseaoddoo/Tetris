@@ -7,6 +7,7 @@
         sass = require('gulp-sass'),
         clean = require('gulp-clean'),
         uglify = require('gulp-uglify'),
+        connect = require('gulp-connect'),
         header = require('gulp-header'),
         rename = require('gulp-rename');
 
@@ -90,6 +91,10 @@
                 .pipe(rename({suffix: '.min'}))
                 .pipe(gulp.dest(paths.js.dest));
         }
+    });
+
+    gulp.task('connect', function () {
+        connect.server();
     });
 
     gulp.task('debug', function(){

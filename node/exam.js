@@ -21,13 +21,26 @@
 //
 // main(process.argv.slice(2));
 
-var http = require('http');
-http.createServer(function (request, response) {
+// var http = require('http');
+// http.createServer(function (request, response) {
+//
+//     response.writeHead(200, {
+//         'Contetnt-Type': 'text/plain'
+//     });
+//     response.end('Hello World\n');
+// }).listen(8888);
+//
+// console.log('Serve running ati http://127.0.0.1:8888');
 
-    response.writeHead(200, {
-        'Contetnt-Type': 'text/plain'
-    });
-    response.end('Hello World\n');
-}).listen(8888);
-
-console.log('Serve running ati http://127.0.0.1:8888');
+var a = '全局';
+var F = function () {
+    var b = '本地';
+    var N = function () {
+        var c = '内部';
+         return b;
+    };
+    return N;
+};
+var inner = F();
+console.log(inner);
+//console.log(b);
