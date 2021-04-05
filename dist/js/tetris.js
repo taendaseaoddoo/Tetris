@@ -1534,11 +1534,11 @@
     $(function(){
         $('#tetris-demo')
         .css({'width': $(window).width(),'height': $(window).height()})
-        .tetris({
-            speed: 20,
-            autoplay: true,
-            autoplayRestart: false
-        });
+        // .tetris({
+        //     speed: 20,
+        //     autoplay: true,
+        //     autoplayRestart: false
+        // });
         Music.init({
             holder: '#tetris-demo',
             random: true,

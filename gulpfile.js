@@ -51,6 +51,7 @@
 
     gulp.task('html', ['clean:html'], function(){
         return gulp.src(paths.html.src)
+            .pipe(connect.reload())
             .pipe(jade({
                 pretty: true,
                 data: {
@@ -94,10 +95,18 @@
     });
 
     gulp.task('connect', function () {
-        connect.server();
+        connect.server({
+            livereload: true,
+            port: 9999
+        });
     });
+
     gulp.task('close-connect', function () {
         connect.serverClose();
+    });
+
+    gulp.task('watch', function () {
+        gulp.watch(['./dist/*.html'], ['html']);
     });
 
     gulp.task('debug', function(){
