@@ -96,6 +96,9 @@
     gulp.task('connect', function () {
         connect.server();
     });
+    gulp.task('close-connect', function () {
+        connect.serverClose();
+    });
 
     gulp.task('debug', function(){
         debug = true;
