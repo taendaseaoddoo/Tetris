@@ -1546,7 +1546,8 @@
             playlist: [
                 'm1.mp3',
                 'm2.mp3',
-                'm3.mp3'
+                'm3.mp3',
+                'm4.mp3'
             ]
         });
         Music.play();

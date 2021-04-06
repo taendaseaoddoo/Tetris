@@ -1546,7 +1546,8 @@
             playlist: [
                 'm1.mp3',
                 'm2.mp3',
-                'm3.mp3'
+                'm3.mp3',
+                'm4.mp3'
             ]
         });
         Music.play();
@@ -1590,7 +1591,6 @@
             var i, ctx = this.context;
             ctx.strokeStyle = this.getColor();
             ctx.lineWidth = 2;
-            console.log(this.points);
             ctx.beginPath();
             ctx.moveTo(this.points[0].x, this.points[0].y);
             for (i=1; i<this.points.length; i++) {
