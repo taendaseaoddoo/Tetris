@@ -1,5 +1,10 @@
-(function($, window, document){
-
+require.config({
+    baseUrl: './',
+    paths: {
+        'jquery': 'jquery-3.2.1.min'
+    }
+});
+require(['jquery'], function ($) {
     'use strict';
 
     function Music(config) {
@@ -653,10 +658,10 @@
             // Score
             game._$score = $(
                 '<div class="score-holder">'+
-                    '<div class="score">'+
-                        '<div class="score-msg">'+ this.options.scoreText +'</div>'+
-                        '<div class="score-num">0</div>'+
-                    '</div>'+
+                '<div class="score">'+
+                '<div class="score-msg">'+ this.options.scoreText +'</div>'+
+                '<div class="score-num">0</div>'+
+                '</div>'+
                 '</div>').hide();
             game._$scoreText = game._$score.find('.score-num');
             game._$gameholder.append(game._$score);
@@ -664,10 +669,10 @@
             // Create the start menu
             game._$start = $(
                 '<div class="start-holder">'+
-                    '<div class="start">'+
-                        '<div class="start-msg">'+ this.options.playText +'</div>'+
-                        '<a class="btn start-btn">'+ this.options.playButtonText +'</a>'+
-                    '</div>'+
+                '<div class="start">'+
+                '<div class="start-msg">'+ this.options.playText +'</div>'+
+                '<a class="btn start-btn">'+ this.options.playButtonText +'</a>'+
+                '</div>'+
                 '</div>').hide();
             game._$gameholder.append(game._$start);
 
@@ -679,10 +684,10 @@
             // Create the game over menu
             game._$gameover = $(
                 '<div class="game-over-holder">'+
-                    '<div class="game-over">'+
-                        '<div class="game-over-msg">'+ this.options.gameOverText +'</div>'+
-                        '<a class="btn game-over-btn">'+ this.options.restartButtonText +'</a>'+
-                    '</div>'+
+                '<div class="game-over">'+
+                '<div class="game-over-msg">'+ this.options.gameOverText +'</div>'+
+                '<a class="btn game-over-btn">'+ this.options.restartButtonText +'</a>'+
+                '</div>'+
                 '</div>').hide();
             game._$gameover.find('.game-over-btn').click(function(event){
                 event.preventDefault();
@@ -1531,7 +1536,7 @@
 
         return this.each(function (index, element) {
             var tetris = new Tetris(settings, $(element));
-            tetris.init();
+            //tetris.init();
 
             var music = new Music({
                 holder: '#tetris-demo',
@@ -1550,13 +1555,16 @@
     };
 
     $(function(){
-        $('#tetris-demo')
-        .css({'width': $(window).width(),'height': $(window).height()})
+        var $demo = $('<div id="tetris-demo">');
+        $demo.css({
+            'width': $(window).width(),
+            'height': $(window).height()
+        })
+        .append('body')
         .tetris({
             speed: 20,
             autoplay: true,
             autoplayRestart: false
         });
     });
-
-}(jQuery, window, document));
+});
