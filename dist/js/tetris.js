@@ -2,19 +2,22 @@
 
     'use strict';
 
-    var Music = {
-        audioEl: null,
-        audioObj: null,
-        currentId: -1,
-        holder: 'body',
-        paths: '',
-        playList: null,
-        isRandom: false,
-        init: function (config) {
-            this.holder = config.holder || this.holder;
-            this.isRandom = config.random || this.isRandom;
-            this.paths = config.paths || this.paths;
-            this.initPlayList(config.playlist);
+    function Music(config) {
+        this.config = config;
+        this.audioEl = null;
+        this.audioObj = null;
+        this.currentId = -1;
+        this.holder = 'body';
+        this.paths = '';
+        this.playList = null;
+        this.isRandom = false;
+    }
+    Music.prototype = {
+        init: function () {
+            this.holder = this.config.holder || this.holder;
+            this.isRandom = this.config.random || this.isRandom;
+            this.paths = this.config.paths || this.paths;
+            this.initPlayList(this.config.playlist);
             this.initAudio();
         },
         initPlayList: function (playlist) {
@@ -1527,143 +1530,33 @@
         var settings = $.extend({}, defaults, options);
 
         return this.each(function (index, element) {
-            (new Tetris(settings, $(element))).init();
+            var tetris = new Tetris(settings, $(element));
+            tetris.init();
+
+            var music = new Music({
+                holder: '#tetris-demo',
+                random: true,
+                paths: '../mp3/',
+                playlist: [
+                    'm1.mp3',
+                    'm2.mp3',
+                    'm3.mp3',
+                    'm4.mp3'
+                ]
+            });
+            music.init();
+            music.play();
         });
     };
 
     $(function(){
         $('#tetris-demo')
         .css({'width': $(window).width(),'height': $(window).height()})
-        // .tetris({
-        //     speed: 20,
-        //     autoplay: true,
-        //     autoplayRestart: false
-        // });
-        Music.init({
-            holder: '#tetris-demo',
-            random: true,
-            paths: '../mp3/',
-            playlist: [
-                'm1.mp3',
-                'm2.mp3',
-                'm3.mp3',
-                'm4.mp3'
-            ]
+        .tetris({
+            speed: 20,
+            autoplay: true,
+            autoplayRestart: false
         });
-        Music.play();
     });
 
 }(jQuery, window, document));
-
-(function ($) {
-
-    function Point(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    function Line(p1, p2) {
-        this.p1 = p1;
-        this.p2 = p2;
-        this.length = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
-    }
-
-    function Shape() {
-        this.points = [];
-        this.lines = [];
-        this.init();
-    }
-    Shape.prototype = {
-        constructor: Shape,
-        init: function () {
-            var canvas = document.createElement('canvas');
-            canvas.id = 'canvas';
-            canvas.width = '1000';
-            canvas.height = '500';
-            canvas.style = 'position: fixed; width: 1000px; height: 500px; left: 0; top: 0;';
-            document.body.appendChild(canvas);
-            if(this.context === undefined) {
-                //var canvas = document.getElementById('canvas');
-                Shape.prototype.context = canvas.getContext('2d');
-            }
-        },
-        draw: function () {
-            var i, ctx = this.context;
-            ctx.strokeStyle = this.getColor();
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(this.points[0].x, this.points[0].y);
-            for (i=1; i<this.points.length; i++) {
-                ctx.lineTo(this.points[i].x, this.points[i].y);
-            }
-            ctx.closePath();
-            ctx.stroke();
-        },
-        getColor: function () {
-            var i, rgb = [];
-            for (i=0; i<3; i++) {
-                rgb[i] = Math.round(255 * Math.random());
-            }
-            return 'rgb(' + rgb.join(', ') + ')';
-        },
-        getLines: function () {
-            if(this.lines.length > 0) {
-                return this.lines;
-            }
-            var i, lines = [];
-            for(i=0; i<this.points.length; i++) {
-                lines[i] = new Line(this.points[i], this.points[i+1] || this.points[0]);
-            }
-            this.lines = lines;
-            return lines;
-        },
-        getArea: function () {
-        },
-        getPerimeter: function () {
-            var i, perim = 0, lines = this.getLines();
-            for(i=0; i<lines.length; i++) {
-                perim += lines[i].length;
-            }
-            return perim;
-        }
-    };
-
-    function Triangle(a, b, c) {
-        this.points = [a, b, c];
-        this.getArea = function () {
-            var p = this.getPerimeter(),
-                s = p / 2;
-            return Math.sqrt(s*(s-this.lines[0].length)*(s-this.lines[1].length)*(s-this.lines[2].length));
-        }
-    }
-
-    function Rectangle(p, side_a, side_b) {
-        this.points = [
-            p,
-            new Point(p.x + side_a, p.y),
-            new Point(p.x + side_a, p.y + side_b),
-            new Point(p.x, p.y + side_b)
-        ];
-        this.getArea = function () {
-            return side_b * side_b;
-        }
-    }
-
-    function Square(p, side) {
-        Rectangle.call(this, p, side, side);
-    }
-
-    var shape = new Shape();
-    Triangle.prototype = shape;
-    Rectangle.prototype = shape;
-    Square.prototype = shape;
-
-    var p1 = new Point(100, 100);
-    var p2 = new Point(300, 100);
-    var p3 = new Point(200, 0);
-    var t = new Triangle(p1, p2, p3);
-    t.draw();
-    console.log(t.getPerimeter());
-    console.log(t.getArea());
-
-}(jQuery));
