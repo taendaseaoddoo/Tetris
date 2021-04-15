@@ -1,6 +1,7 @@
 require.config({
+    baseUrl: './',
     paths: {
-        'jquery': 'jquery-3.2.1.min.js'
+        'jquery': 'jquery-3.2.1.min'
     }
 });
 require(['jquery'], function ($) {
