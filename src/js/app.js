@@ -5,8 +5,15 @@ require.config({
     }
 });
 require(['jquery', './tetris', './music'], function ($, Tetris, Music) {
-    $.fn.tetris = function (options) {
-        var defaults = {
+    "use strict";
+    $.fn.tetris = function (options1, options2) {
+        var music_defaults = {
+            holder: '',
+            random: false,
+            paths: '',
+            playlist: []
+        };
+        var tetris_defaults = {
             autoplay: false, // Let a bot play the game
             autoplayRestart: true, // Restart the game automatically once a bot loses
             showFieldOnStart: true, // Show a bunch of random blocks on the start screen (it looks nice)
@@ -41,23 +48,14 @@ require(['jquery', './tetris', './music'], function ($, Tetris, Music) {
             // When a line is made. Returns the number of lines, score assigned and total score
             onLine: function(lines, scoreIncrement, score){}
         };
-        var settings = $.extend({}, defaults, options);
+
+        var tetris_settings = $.extend({}, tetris_defaults, options1);
+        var music_settings = $.extend({}, music_defaults, options2);
 
         return this.each(function (index, element) {
-            var tetris = new Tetris(settings, $(element));
+            var tetris = new Tetris(tetris_settings, $(element));
             //tetris.init();
-
-            var music = new Music({
-                holder: '#tetris-demo',
-                random: true,
-                paths: '../mp3/',
-                playlist: [
-                    'm1.mp3',
-                    'm2.mp3',
-                    'm3.mp3',
-                    'm4.mp3'
-                ]
-            });
+            var music = new Music(music_settings);
             music.init();
             music.play();
         });
@@ -73,6 +71,15 @@ require(['jquery', './tetris', './music'], function ($, Tetris, Music) {
         speed: 20,
         autoplay: true,
         autoplayRestart: false
+    }, {
+        holder: '#tetris-demo',
+        random: false,
+        paths: '../mp3/',
+        playlist: [
+            'm1.mp3',
+            'm2.mp3',
+            'm3.mp3',
+            'm4.mp3'
+        ]
     });
-
 });
