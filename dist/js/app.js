@@ -6,7 +6,7 @@ require.config({
         'underscore': '../../libs/underscore/underscore-min'
     }
 });
-require(['jquery', 'backbone', './tetris', './music', './defaults'], function ($, backbone, Tetris, Music, defaults) {
+require(['jquery', 'backbone', './tetris', './music', './defaults'], function ($, Backbone, Tetris, Music, defaults) {
     "use strict";
     $.fn.tetris = function (options1, options2) {
         var tetris_settings = $.extend({}, defaults.tetris, options1);
@@ -20,7 +20,7 @@ require(['jquery', 'backbone', './tetris', './music', './defaults'], function ($
         });
     };
 
-    console.log(backbone)
+    console.log(Backbone);
 
     $('#tetris-demo').css({
         'width': $(window).width(),
