@@ -1,7 +1,7 @@
 /**
  * Themes. You can add more custom themes to this object.
  */
-window.TetrisThemes = {
+define({
     'dewlyer': {
         background: '#000000',
         primary: '#eee',
@@ -107,4 +107,4 @@ window.TetrisThemes = {
         strokeWidth: 3,
         innerStroke: null
     }
-};
+});

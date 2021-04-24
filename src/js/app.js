@@ -1,13 +1,61 @@
+'use strict';
+
 require.config({
     baseUrl: '../js',
     paths: {
         'jquery': '../../libs/jquery/dist/jquery.min',
-        'backbone': '../../libs/backbone/backbone-min',
-        'underscore': '../../libs/underscore/underscore-min'
+        'underscore': '../../libs/underscore/underscore-min',
+        'backbone': '../../libs/backbone/backbone-min'
+    },
+    shim: {
+        underscore: {
+            exports: '_'
+        },
+        backbone: {
+            deps: [
+                'underscore',
+                'jquery'
+            ],
+            exports: 'Backbone'
+        }
     }
 });
-require(['jquery', 'backbone', './tetris', './music', './defaults'], function ($, Backbone, Tetris, Music, defaults) {
-    "use strict";
+require([
+    'jquery',
+    'underscore',
+    'backbone',
+    './tetris',
+    './music',
+    './defaults'
+], function ($, _, Backbone, Tetris, Music, defaults) {
+
+    var template = '';
+    var tetris_model = Backbone.Model.extend({
+        default: {
+
+        }
+    });
+    var tetris_collection = Backbone.Collection.extend({
+        model: tetris_model
+    });
+    var tetirs_router = Backbone.Router.extend({
+        routes: {
+
+        }
+    });
+    var tetirs_view = Backbone.View.extend({
+        el: '#tetris-demo',
+        template: _.template(template),
+        events: {
+            
+        },
+        initialize: function () {
+        },
+        render: function () {
+        }
+    });
+    Backbone.history.start();
+
     $.fn.tetris = function (options1, options2) {
         var tetris_settings = $.extend({}, defaults.tetris, options1);
         var music_settings = $.extend({}, defaults.music, options2);
@@ -19,8 +67,6 @@ require(['jquery', 'backbone', './tetris', './music', './defaults'], function ($
             music.play();
         });
     };
-
-    console.log(Backbone);
 
     $('#tetris-demo').css({
         'width': $(window).width(),

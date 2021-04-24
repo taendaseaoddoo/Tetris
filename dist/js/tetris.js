@@ -1,4 +1,4 @@
-define(['jquery', 'Shape'], function ($, Shape) {
+define(['jquery', 'Shape', 'themes'], function ($, Shape, themes) {
     function Tetris(options, element){
         this.options = options;
         this.element = element;
