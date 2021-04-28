@@ -83,6 +83,7 @@ require([
     var appRouter = new app.Router();
     var appView = new app.View();
     Backbone.history.start();
+    // git test
 
     // $.fn.tetris = function (options1, options2) {
     //     var tetris_settings = $.extend({}, defaults.tetris, options1);
